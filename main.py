@@ -5,27 +5,27 @@ class Menu():
         self.current_user = None
         self.is_running = True
 
-    def show(self):
+    def show_menu(self):
         if self.current_user is None:
             print("-------------- Welcome to Ecommerce Store ----------------")
             print("1: Signup")
             print("2: Login")
             print("3: Quit")
 
-        elif self.current_user == 'user':
+        elif isinstance(self.current_user,models.User):
             print(f"Hello {self.current_user.name} Welcome to Ecommerce Store")
             print("1: Browse Products")
             print("2: Search by id")
             print("3: See order status")
             print("4: Quit")
 
-        elif self.current_user == 'driver':
+        elif isinstance(self.current_user,models.Driver):
             print(f"Hello {self.current_user.name} Welcome to Driver dashboard")
             print("1: See and pick orders")
             print("2: Start Trip")
             print("3: Quit")
 
-        elif self.current_user == 'admin':
+        elif isinstance(self.current_user,models.Admin):
             print(f"-------------- Welcome to Admin Dashboard ---------------")
             print(f"Your current Balance is: {self.current_user.balance}")
             print("1: See all products")
@@ -54,7 +54,7 @@ class Menu():
             elif choice == 3:
                 self.handle_exit()
 
-        elif self.current_user == 'user':
+        elif isinstance(self.current_user,models.User):
             if choice == 1:
                 self.browse_product()
             elif choice == 2:
@@ -64,7 +64,7 @@ class Menu():
             elif choice == 4:
                 self.handle_exit()
 
-        elif self.current_user == 'driver':
+        elif isinstance(self.current_user,models.Driver):
             if choice == 1:
                 self.show_orders_driver()
             elif choice == 2:
@@ -72,7 +72,7 @@ class Menu():
             elif choice == 3:
                 self.handle_exit()
 
-        elif self.current_user == 'admin':
+        elif isinstance(self.current_user,models.Admin):
             if choice == 1:
                 self.show_all_products()
             elif choice == 2:
