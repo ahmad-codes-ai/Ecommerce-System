@@ -4,5 +4,7 @@ import models
 # print(result)
 
 
-r = models.Registration.login('ahmad@gmail.com',1122)
-print(r.location)
+p = models.Product('Laptop',2000,2150,10)
+p.save_product()
+profit = p.sell_prod(6)
+print(profit)

@@ -17,9 +17,11 @@ class Registration():
         for user in data["main_list"]:
             if user['email'] == email:
                 return False
-            
-        l = len(data['main_list'])
-        uid = l + 1
+        try:
+            l = max(data['main_list'])
+            uid = l + 1
+        except:
+            uid = 1
         d = {'id':uid,'name':name,'email':email,'password':pas,'location':loc}
         data['main_list'].append(d)
 
@@ -98,6 +100,13 @@ class Driver():
         self.location = loc
         self.balance = 0
 
+class Admin():
+    def __init__(self,name,email,pas,bal=0):
+        self.name = name
+        self.email = email
+        self.password = pas
+        self.balance = bal
+
 
 class Product():
     def __init__(self,name,cp,sp,quan=0):
@@ -105,6 +114,48 @@ class Product():
         self.cost_price = cp
         self.selling_price = sp
         self.quantity = quan 
-        self.id = None
+        self.id = self.get_id()
 
-    
+    def get_id(self):
+        with open('Data/products.json') as f:
+            data = json.load(f)
+        try:
+            l = max(data["main_list"])
+            return l+1
+        except:
+            return 1
+    def save_product(self):
+
+        d = {'name': self.name,
+             'cost_price': self.cost_price,
+             'selling_price': self.selling_price,
+             'quantity': self.quantity,
+             'id': self.id}
+        
+        with open('Data/products.json','r') as f:
+            data = json.load(f)
+
+        data["main_list"].append(d)
+
+        with open('Data/products.json','w') as f:
+            json.dump(data,f,indent=4)
+
+
+    def sell_prod(self,quan):
+        if self.quantity >= quan:
+            self.quantity-=quan
+            profit = (quan * self.selling_price) - (quan * self.cost_price)
+
+            with open('Data/products.json','r') as f:
+                data = json.load(f)
+
+            for prod in data['main_list']:
+                if prod['id'] == self.id:
+                    prod['quantity'] = self.quantity
+
+            with open('Data/products.json','w') as f:
+                json.dump(data,f,indent=4)
+                return profit
+        return False
+
+
