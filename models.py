@@ -99,6 +99,7 @@ class Driver():
         self.password = pas 
         self.location = loc
         self.balance = 0
+        self.status = None
 
 class Admin():
     def __init__(self,name,email,pas,bal=0):
@@ -106,6 +107,9 @@ class Admin():
         self.email = email
         self.password = pas
         self.balance = bal
+
+    
+
 
 
 class Product():
