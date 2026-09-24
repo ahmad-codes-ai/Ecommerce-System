@@ -1,0 +1,74 @@
+The main Plan is 
+
+Customer -> Can browse,add_to_cart,buy() 
+Admin -> Add,restock,see_orders,financial_data
+Driver -> Take orders,city-city,within city
+
+There will be a file called products.py the admin will crreated prod and within the product class the code for each product
+to be added into a list the Customer can browse this list and its is also helpfull for financial_data for the admin side,
+
+The admin will have a balance and it limit the numbers of products he can create and restock, the profit add back to his main 
+balance 
+
+The user will provide his location so does the driver so if driver choose the city - city mode it basically transfer
+packages from one city to another can say a warehouse analogy another rider whos city = order_user_city can deliver that
+to the user with a time of 30min per order within city.
+
+There will be 3-4 cities hardcoded users can only choose form there and distance will be hardcoded on which the driver
+time and payment will be calculated the driver actual profit will be after fuel cost calculated based on distance
+
+time or datetime module whatver will be used to take track of time and for now no skipping or fastforwarding logic 
+or maybe if needed and not too much complex will be adde but it will then have chnaces to create a confilcit with current_time
+
+The order is imp thing when user will order a list of products will be created in whihc there will be refrence to the product
+obj along with quan all orders code will be in a separte file and same as product each order will be added into a main order 
+list so the drivers can see the orders 
+
+All three actors customer admin and driver have regitration and login logic saved even after program clsoe by implementing file 
+handling for admin it will be a hardcoded username and pass when entered it opne admin dashboard
+
+To show diffrent actors difrrent interfaces we will ask who is signing up as a cutsomer / driver and save it in file too 
+and then at login take that data and show result based on current actor role 
+
+
+
+
+
+ecommerce_project/
+│
+├── main.py              ← Entry point. Starts the app. Shows menu.
+│
+├── models.py            ← ALL class definitions
+│   ├── User
+│   ├── Customer
+│   ├── Admin
+│   ├── Driver
+│   ├── Product
+│   ├── Order
+│   └── Cart
+│
+├── services.py          ← Business logic (no classes, just functions)
+│   ├── register_user()
+│   ├── login_user()
+│   ├── create_product()
+│   ├── place_order()
+│   └── assign_driver()
+│
+├── data_handler.py      ← All file I/O
+│   ├── load_users()
+│   ├── save_users()
+│   ├── load_products()
+│   ├── save_products()
+│   └── save_orders()
+│
+├── menu.py              ← All menu display functions
+│   ├── show_customer_menu()
+│   ├── show_admin_menu()
+│   └── show_driver_menu()
+│
+└── data/                ← All JSON files
+    ├── users.json
+    ├── products.json
+    ├── orders.json
+    ├── carts.json
+    └── financials.json
