@@ -12,7 +12,7 @@ def add_product(name,cp,sp,quan):
         product = models.Product(name,cp,sp,quan)
         product.save_product()
         models.Admin.update_balance(bal-cost)
-        
+
         
         return product
 
@@ -48,8 +48,12 @@ def sell_prod(id,quan):
                 return True
             return False
 
-def add_to_cart(id,quan):
-    pass
+def save_cart(customer):
+    carts = models.DB.load_carts()
+
+    carts[customer.id] = customer.cart
+
+    models.DB.put_cart(carts)
 
 
 

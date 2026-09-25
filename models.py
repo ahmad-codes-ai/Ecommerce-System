@@ -43,6 +43,11 @@ class User():
                     return True
                 return False
 
+    def view_cart(self):
+        carts = DB.load_carts()
+        data = carts.get(self.id)
+        return data
+
 
 class Driver():
     def __init__(self,id,name,email,pas,loc):
@@ -130,6 +135,12 @@ class DB():
         with open('Data/finance.json','r') as f:
             data = json.load(f)
         return data
+
+    @staticmethod
+    def load_carts():
+        with open('Data/carts.json','r') as f:
+            data = json.load(f)
+        return data
     
     @staticmethod
     def put_products(data):
@@ -146,4 +157,7 @@ class DB():
         with open('Data/users.json','w') as f:
             json.dump(data,f,indent=4)
 
-
+    @staticmethod
+    def put_cart(data):
+        with open('Data/carts.json','w') as f:
+            json.dump(data,f,indent=4)
