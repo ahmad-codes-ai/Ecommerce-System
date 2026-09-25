@@ -56,6 +56,13 @@ def save_cart(customer):
     models.DB.put_cart(carts)
 
 
+def show_products():
+    products = models.DB.load_products()
+    print("ID \t \t Name \t \t \tPrice")
+    for product in products['main_list']:
+        print(f"{product['id']} \t \t {product['name']} \t \t {product['selling_price']}$")
 
+
+        
     
                 

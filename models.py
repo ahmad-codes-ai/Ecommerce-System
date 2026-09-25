@@ -48,6 +48,14 @@ class User():
         data = carts.get(self.id)
         return data
 
+    def remove_item_from_cart(self,id):
+        idx = 0
+        self.cart = [item for item in self.cart if item['id']!=id]
+
+
+    def checkout(self):
+        pass
+
 
 class Driver():
     def __init__(self,id,name,email,pas,loc):
@@ -161,3 +169,7 @@ class DB():
     def put_cart(data):
         with open('Data/carts.json','w') as f:
             json.dump(data,f,indent=4)
+
+
+
+
