@@ -1,65 +1,6 @@
 import json
 
 
-class Registration():
-
-    @staticmethod
-    def sign_up(name,email,pas,loc,actor='user'):
-
-        if actor == 'user':
-            file = 'Data/users.json'
-        else:
-            file = 'Data/drivers.json'
-        
-        with open(file,'r') as f:
-            data = json.load(f)
-
-        for user in data["main_list"]:
-            if user['email'] == email:
-                return False
-        try:
-            l = max(data['main_list'])
-            uid = l + 1
-        except:
-            uid = 1
-        d = {'id':uid,'name':name,'email':email,'password':pas,'location':loc}
-        data['main_list'].append(d)
-
-        with open(file,'w') as f:
-            json.dump(data,f,indent=4)
-        return True
-
-    @staticmethod
-    def login(email,pas):
-        with open('Data/users.json','r') as f:
-            data = json.load(f)
-        for user in data['main_list']:
-            if user['email'] == email:
-                if user['password'] == pas:
-                    print("Login Successfull") 
-                    u = User(user['id'],user['name'],email,pas,user['location'])
-                    return u
-
-                else:
-                    print("Wrong Password entered")
-                    return False
-
-        with open('Data/drivers.json','r') as f:
-            data = json.load(f)
-        for driver in data['main_list']:
-            if driver['email'] == email:
-                if driver['password'] == pas:
-                    print("Login Successfull")
-                    u = Driver(driver['id'],driver['name'],email,pas,driver['location'])
-                    return u
-                else:
-                    print("Wrong password entered")
-                    return False
-
-        print("No email found Plz Signup")
-        return False
-
-
 class Map():
     cities = ['lahore','islamabad','karachi']
     distances = {
@@ -89,6 +30,18 @@ class User():
         self.email = email
         self.password = pas 
         self.location = loc
+        self.cart = []
+
+    def add_item_to_cart(self,id,quan):
+        products = DB.load_products()
+
+        for product in products['main_list']:
+            if product['id'] == id:
+                if product['quantity'] >= quan:
+                    detail = [id,quan]
+                    self.cart.append(detail)
+                    return True
+                return False
 
 
 class Driver():
@@ -113,6 +66,9 @@ class Admin():
 
     def update_balance(self,bal):
         self.balance = bal
+
+    def update_file_balance(self):
+        pass
 
 
     
@@ -189,3 +145,5 @@ class DB():
     def put_users(data):
         with open('Data/users.json','w') as f:
             json.dump(data,f,indent=4)
+
+

@@ -13,6 +13,7 @@ def add_product(name,cp,sp,quan):
         product.save_product()
         models.Admin.update_balance(bal-cost)
         
+        
         return product
 
 
@@ -22,20 +23,15 @@ def restock_product(id,quan):
     is_found = False
     for product in products['main_list']:
         if product['id'] == id:
-            is_found = True
             cp = product['cost_price']
             cost = cp * quan
             if bal >= cost:
-                print("Stock Updated Successfully")
                 product['quantity']+=quan
                 models.Admin.update_balance(bal - cost)
+                models.DB.put_products(products)
+                return True
             else:
-                print("Your balance is not enough for this action")
-
-    if not is_found:
-        print("No product found with this id")
-
-    models.DB.put_products(products)
+                return False
 
 
 
@@ -52,33 +48,8 @@ def sell_prod(id,quan):
                 return True
             return False
 
-
-
-result = sell_prod(1,10)
-print(result)
-
-
-
-
-
-
-
-
-'''
-    if self.quantity >= quan:
-        self.quantity-=quan
-        profit = (quan * self.selling_price) - (quan * self.cost_price)
-
-        data = models.DB.load_products()
-
-        for prod in data['main_list']:
-            if prod['id'] == self.id:
-                prod['quantity'] = self.quantity
-
-        models.DB.put_products(data)
-        return profit
-    return False
-'''
+def add_to_cart(id,quan):
+    pass
 
 
 

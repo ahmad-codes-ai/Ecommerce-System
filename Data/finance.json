@@ -1,5 +1,8 @@
 {
-    "main_list":[
+    "orders":[
         
-    ]
+    ],
+
+    "total_revenu" : 0,
+    "total_profit" : 0
 }
