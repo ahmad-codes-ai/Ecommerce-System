@@ -108,6 +108,13 @@ class Admin():
         self.password = pas
         self.balance = bal
 
+    def get_balance(self):
+        return self.balance
+
+    def update_balance(self,bal):
+        self.balance = bal
+
+
     
 
 
@@ -121,8 +128,7 @@ class Product():
         self.id = self.get_id()
 
     def get_id(self):
-        with open('Data/products.json') as f:
-            data = json.load(f)
+        data = DB.load_products()
         try:
             l = max(data["main_list"])
             return l+1
@@ -136,30 +142,50 @@ class Product():
              'quantity': self.quantity,
              'id': self.id}
         
-        with open('Data/products.json','r') as f:
-            data = json.load(f)
+        data = DB.load_products()
 
         data["main_list"].append(d)
 
+        DB.put_products(data)
+
+
+class DB():
+
+    @staticmethod
+    def load_products():
+        with open('Data/products.json','r') as f:
+            data = json.load(f)
+        return data
+
+    @staticmethod
+    def load_drivers():
+        with open('Data/drivers.json','r') as f:
+            data = json.load(f)
+        return data
+
+    @staticmethod
+    def load_users():
+        with open('Data/users.json','r') as f:
+            data = json.load(f)
+        return data
+
+    @staticmethod
+    def load_finance():
+        with open('Data/finance.json','r') as f:
+            data = json.load(f)
+        return data
+    
+    @staticmethod
+    def put_products(data):
         with open('Data/products.json','w') as f:
             json.dump(data,f,indent=4)
 
+    @staticmethod
+    def put_drivers(data):
+        with open('Data/drivers.json','w') as f:
+            json.dump(data,f,indent=4)
 
-    def sell_prod(self,quan):
-        if self.quantity >= quan:
-            self.quantity-=quan
-            profit = (quan * self.selling_price) - (quan * self.cost_price)
-
-            with open('Data/products.json','r') as f:
-                data = json.load(f)
-
-            for prod in data['main_list']:
-                if prod['id'] == self.id:
-                    prod['quantity'] = self.quantity
-
-            with open('Data/products.json','w') as f:
-                json.dump(data,f,indent=4)
-                return profit
-        return False
-
-
+    @staticmethod
+    def put_users(data):
+        with open('Data/users.json','w') as f:
+            json.dump(data,f,indent=4)

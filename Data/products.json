@@ -1,5 +1,11 @@
 {
     "main_list": [
-      
+        {
+            "name": "laptop",
+            "cost_price": 100,
+            "selling_price": 110,
+            "quantity": 5,
+            "id": 1
+        }
     ]
 }

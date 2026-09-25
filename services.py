@@ -1,0 +1,86 @@
+import models
+
+
+
+def add_product(name,cp,sp,quan):
+
+    bal = models.Admin.get_balance()
+    cost = cp * quan
+    if bal < cost:
+        return False
+    else:
+        product = models.Product(name,cp,sp,quan)
+        product.save_product()
+        models.Admin.update_balance(bal-cost)
+        
+        return product
+
+
+def restock_product(id,quan):
+    bal = models.Admin.get_balance()
+    products = models.DB.load_products()
+    is_found = False
+    for product in products['main_list']:
+        if product['id'] == id:
+            is_found = True
+            cp = product['cost_price']
+            cost = cp * quan
+            if bal >= cost:
+                print("Stock Updated Successfully")
+                product['quantity']+=quan
+                models.Admin.update_balance(bal - cost)
+            else:
+                print("Your balance is not enough for this action")
+
+    if not is_found:
+        print("No product found with this id")
+
+    models.DB.put_products(products)
+
+
+
+def sell_prod(id,quan):
+    products = models.DB.load_products()
+
+    for product in products['main_list']:
+        if product['id'] == id:
+            if product['quantity'] - quan > 0:
+                product['quantity']-=quan
+                total = product['selling_price'] * quan
+                models.DB.put_products(products)
+                models.Admin.update_balance(total)
+                return True
+            return False
+
+
+
+result = sell_prod(1,10)
+print(result)
+
+
+
+
+
+
+
+
+'''
+    if self.quantity >= quan:
+        self.quantity-=quan
+        profit = (quan * self.selling_price) - (quan * self.cost_price)
+
+        data = models.DB.load_products()
+
+        for prod in data['main_list']:
+            if prod['id'] == self.id:
+                prod['quantity'] = self.quantity
+
+        models.DB.put_products(data)
+        return profit
+    return False
+'''
+
+
+
+    
+                
