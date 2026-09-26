@@ -4,21 +4,24 @@ import models
 
 def add_product(name,cp,sp,quan):
 
-    bal = models.Admin.get_balance()
+    bal = get_admin_balance()
     cost = cp * quan
     if bal < cost:
         return False
     else:
         product = models.Product(name,cp,sp,quan)
         product.save_product()
-        models.Admin.update_balance(bal-cost)
-
-        
+        update_admin_balance(bal-cost)
+        am = f"-{cost}"
+        d = {'task':'add_prod','amount':am}
+        finance = models.DB.load_finance()
+        finance['logs'].append(d)
+        models.DB.put_finance(finance)
         return product
 
 
 def restock_product(id,quan):
-    bal = models.Admin.get_balance()
+    bal = get_admin_balance()
     products = models.DB.load_products()
     is_found = False
     for product in products['main_list']:
@@ -27,7 +30,7 @@ def restock_product(id,quan):
             cost = cp * quan
             if bal >= cost:
                 product['quantity']+=quan
-                models.Admin.update_balance(bal - cost)
+                update_admin_balance(bal - cost)
                 models.DB.put_products(products)
                 return True
             else:
@@ -44,7 +47,7 @@ def sell_prod(id,quan):
                 product['quantity']-=quan
                 total = product['selling_price'] * quan
                 models.DB.put_products(products)
-                models.Admin.update_balance(total)
+                update_admin_balance(total)
                 return True
             return False
 
@@ -63,6 +66,15 @@ def show_products():
         print(f"{product['id']} \t \t {product['name']} \t \t {product['selling_price']}$")
 
 
-        
-    
-                
+def get_admin_balance():
+    data = models.DB.load_admin()
+    return data['balance']
+
+def update_admin_balance(bal):
+    data = models.DB.load_admin()
+    data['balance'] = bal
+    models.DB.put_admin(data)
+
+
+add_product('Ahmad',100,120,10)
+

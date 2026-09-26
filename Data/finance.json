@@ -1,8 +1,11 @@
 {
-    "orders":[
-        
+    "orders": [],
+    "logs": [
+        {
+            "task": "add_prod",
+            "amount": "-1000"
+        }
     ],
-
-    "total_revenu" : 0,
-    "total_profit" : 0
+    "total_revenu": 0,
+    "total_profit": 0
 }

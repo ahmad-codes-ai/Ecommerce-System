@@ -67,26 +67,6 @@ class Driver():
         self.balance = 0
         self.status = None
 
-class Admin():
-    def __init__(self,name,email,pas,bal=0):
-        self.name = name
-        self.email = email
-        self.password = pas
-        self.balance = bal
-
-    def get_balance(self):
-        return self.balance
-
-    def update_balance(self,bal):
-        self.balance = bal
-
-    def update_file_balance(self):
-        pass
-
-
-    
-
-
 
 class Product():
     def __init__(self,name,cp,sp,quan=0):
@@ -149,6 +129,12 @@ class DB():
         with open('Data/carts.json','r') as f:
             data = json.load(f)
         return data
+
+    @staticmethod
+    def load_admin():
+        with open('Data/admin.json','r') as f:
+            data = json.load(f)
+        return data
     
     @staticmethod
     def put_products(data):
@@ -169,6 +155,17 @@ class DB():
     def put_cart(data):
         with open('Data/carts.json','w') as f:
             json.dump(data,f,indent=4)
+
+    @staticmethod
+    def put_admin(data):
+        with open('Data/admin.json','w') as f:
+            json.dump(data,f,indent=4)
+
+    @staticmethod
+    def put_finance(data):
+        with open('Data/finance.json','w') as f:
+            json.dump(data,f,indent=4)
+
 
 
 
