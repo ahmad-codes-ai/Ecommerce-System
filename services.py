@@ -141,16 +141,37 @@ def get_cart_total(cart):
 
 
 def checkout(customer):
-    orders = models.DB.load_orders()
-    cart = customer.cart
-    total = get_cart_total(cart)
-    order_id = f"{customer.id}_{len(orders)}"
-    d = {'products':cart,'total':total,'status':'pending','driver_id':None}
-    orders[order_id] = d
-    models.DB.put_orders(orders)
+    if len(customer.cart) > 0:
+        orders = models.DB.load_orders()
+        cart = customer.cart
+        total = get_cart_total(cart)
+        order_id = f"{customer.id}_{len(orders)}"
+        d = {'products':cart,'total':total,'status':'pending','driver_id':None}
+        orders[order_id] = d
+        customer.clear_cart()
+        models.DB.put_orders(orders)
+        return order_id
+    return False
 
 
+def product_exist(id):
+    products = models.DB.load_products()
 
+    for product in products['main_list']:
+        if product['id'] == id:
+            return True
+        return False 
+
+
+def get_product_stock(id):
+    products = models.DB.load_products()
+
+    for product in products['main_list']:
+        if product['id'] == id:
+            return product['quantity']
+        return False
+
+    
 cust = models.User(101,'cust','cust@gmail.com',1111,'lahore')
 
 cust.add_item_to_cart(1,4)

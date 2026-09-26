@@ -1,4 +1,11 @@
 {
     "main_list": [
+        {
+            "id": 1,
+            "name": "Ahmad",
+            "email": "ahmad@gmail.com",
+            "password": "1122",
+            "location": "lahore"
+        }
     ]
 }

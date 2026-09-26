@@ -10,11 +10,15 @@
         "status": "pending",
         "driver_id": null
     },
-    "101_1": {
+    "1_1": {
         "products": [
             [
-                1,
-                4
+                "1",
+                3
+            ],
+            [
+                "1",
+                1
             ]
         ],
         "total": 480,

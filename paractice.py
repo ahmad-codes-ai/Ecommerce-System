@@ -11,10 +11,17 @@
 # print(u.cart)
 
 
+order_id = 1111
+def x(y):
+    if y > 2:
+        return order_id
+    else:
+        return False
 
-a = 101
-b = 2
-c = f"{a}_{b}"
+result = x(1)
 
-print(c)
 
+if result:
+    print(result)
+else:
+    print("Not result")

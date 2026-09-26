@@ -1,20 +1,9 @@
 {
     "orders": [],
     "logs": [
-        {
-            "task": "add_prod",
-            "amount": -1000
-        },
-        {
-            "task": "restock_prod",
-            "amount": -1000
-        },
-        {
-            "task": "sold_prod",
-            "amount": 1800
-        }
+        
     ],
-    "total_spent": 2000,
+    "total_spent": 0,
     "total_revenu": 0,
-    "total_profit": 300
+    "total_profit": 0
 }

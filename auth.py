@@ -34,12 +34,10 @@ def login(email,pas):
     for user in data['main_list']:
         if user['email'] == email:
             if user['password'] == pas:
-                print("Login Successfull") 
                 u = models.User(user['id'],user['name'],email,pas,user['location'])
                 return u
 
             else:
-                print("Wrong Password entered")
                 return False
 
     with open('Data/drivers.json','r') as f:
@@ -47,11 +45,9 @@ def login(email,pas):
     for driver in data['main_list']:
         if driver['email'] == email:
             if driver['password'] == pas:
-                print("Login Successfull")
                 u = models.Driver(driver['id'],driver['name'],email,pas,driver['location'])
                 return u
             else:
-                print("Wrong password entered")
                 return False
 
     print("No email found Plz Signup")
