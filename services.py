@@ -3,35 +3,33 @@ import models
 
 
 def add_product(name,cp,sp,quan):
-
-    bal = get_admin_balance()
     cost = cp * quan
-    if bal < cost:
-        return False
-    else:
+    bal = get_admin_balance()
+    if admin_can_afford(cost):
         product = models.Product(name,cp,sp,quan)
         product.save_product()
+
         update_admin_balance(bal-cost)
-        am = f"-{cost}"
-        d = {'task':'add_prod','amount':am}
-        finance = models.DB.load_finance()
-        finance['logs'].append(d)
-        models.DB.put_finance(finance)
+        add_log_finance('add_prod',-cost)
+        add_total_spent_finance(cost)
         return product
+    return False
 
 
 def restock_product(id,quan):
     bal = get_admin_balance()
     products = models.DB.load_products()
-    is_found = False
     for product in products['main_list']:
         if product['id'] == id:
             cp = product['cost_price']
             cost = cp * quan
-            if bal >= cost:
+            if admin_can_afford():
                 product['quantity']+=quan
-                update_admin_balance(bal - cost)
                 models.DB.put_products(products)
+
+                update_admin_balance(bal - cost)
+                add_log_finance('restock_prod',-cost)
+                add_total_spent_finance(cost)
                 return True
             else:
                 return False
@@ -46,10 +44,16 @@ def sell_prod(id,quan):
             if product['quantity'] - quan > 0:
                 product['quantity']-=quan
                 total = product['selling_price'] * quan
+                cost = product['cost_price'] * quan
                 models.DB.put_products(products)
+
                 update_admin_balance(total)
+                add_log_finance('sold_prod',total)
+                add_profit_finance(total - cost)
                 return True
             return False
+
+        
 
 def save_cart(customer):
     carts = models.DB.load_carts()
@@ -75,6 +79,31 @@ def update_admin_balance(bal):
     data['balance'] = bal
     models.DB.put_admin(data)
 
+def add_log_finance(task,amount):
+    finance = models.DB.load_finance()
+    d = {'task':task,'amount':amount}
+    finance['logs'].append(d)
+    models.DB.put_finance(finance)
+
+
+def add_total_spent_finance(amount):
+    finance = models.DB.load_finance()
+    finance['total_spent']+=amount
+    models.DB.put_finance(finance)
+
+
+def add_profit_finance(amount):
+    finance = models.DB.load_finance()
+    finance['total_profit']+=amount
+    models.DB.put_finance(finance)
+
+
+def admin_can_afford(amount):
+    balance = get_admin_balance()
+
+    if amount > balance:
+        return True
+    return False
 
 add_product('Ahmad',100,120,10)
 
