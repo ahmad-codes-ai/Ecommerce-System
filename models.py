@@ -53,10 +53,10 @@ class User():
         self.cart = [item for item in self.cart if item['id']!=id]
 
 
-    def checkout(self):
-        pass
+    def clear_cart(self):
+        self.cart = []
 
-
+        
 class Driver():
     def __init__(self,id,name,email,pas,loc):
         self.id = id
@@ -135,7 +135,13 @@ class DB():
         with open('Data/admin.json','r') as f:
             data = json.load(f)
         return data
-    
+
+    @staticmethod
+    def load_orders():
+        with open('Data/orders.json','r') as f:
+            data = json.load(f)
+        return data
+
     @staticmethod
     def put_products(data):
         with open('Data/products.json','w') as f:
@@ -166,6 +172,10 @@ class DB():
         with open('Data/finance.json','w') as f:
             json.dump(data,f,indent=4)
 
+    @staticmethod
+    def put_orders(data):
+        with open('Data/orders.json','w') as f:
+            json.dump(data,f,indent=4)
 
 
 

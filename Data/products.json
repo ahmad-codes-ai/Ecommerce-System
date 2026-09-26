@@ -1,52 +1,10 @@
 {
     "main_list": [
         {
-            "name": "laptop",
-            "cost_price": 100,
-            "selling_price": 110,
-            "quantity": 5,
-            "id": 1
-        },
-        {
-            "name": "laptop",
-            "cost_price": 100,
-            "selling_price": 110,
-            "quantity": 5,
-            "id": 1
-        },
-        {
-            "name": "smartphone",
-            "cost_price": 50,
-            "selling_price": 65,
-            "quantity": 12,
-            "id": 2
-        },
-        {
-            "name": "wireless_headphones",
-            "cost_price": 20,
-            "selling_price": 35,
-            "quantity": 25,
-            "id": 3
-        },
-        {
-            "name": "smartwatch",
-            "cost_price": 40,
-            "selling_price": 55,
-            "quantity": 8,
-            "id": 4
-        },
-        {
-            "name": "gaming_mouse",
-            "cost_price": 15,
-            "selling_price": 25,
-            "quantity": 30,
-            "id": 5
-        },
-        {
-            "name": "Ahmad",
+            "name": "mobile",
             "cost_price": 100,
             "selling_price": 120,
-            "quantity": 10,
+            "quantity": 5,
             "id": 1
         }
     ]

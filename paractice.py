@@ -11,9 +11,10 @@
 # print(u.cart)
 
 
-a = 10
 
-print(a-20)
+a = 101
+b = 2
+c = f"{a}_{b}"
 
-
+print(c)
 

@@ -23,7 +23,7 @@ def restock_product(id,quan):
         if product['id'] == id:
             cp = product['cost_price']
             cost = cp * quan
-            if admin_can_afford():
+            if admin_can_afford(cost):
                 product['quantity']+=quan
                 models.DB.put_products(products)
 
@@ -101,9 +101,58 @@ def add_profit_finance(amount):
 def admin_can_afford(amount):
     balance = get_admin_balance()
 
-    if amount > balance:
+    if balance >= amount:
         return True
     return False
 
-add_product('Ahmad',100,120,10)
+
+# All geteers from finance.json
+def get_total_profit():
+    finance = models.DB.load_finance()
+    return finance['total_profit']
+
+def get_total_revenu():
+    finance = models.DB.load_finance()
+    return finance['total_revenu']
+
+def get_total_spending():
+    finance = models.DB.load_finance()
+    return finance['total_spent']
+
+def get_total_logs():
+    finance = models.DB.load_finance()
+    return finance['logs']
+
+def get_product_price(id):
+    products = models.DB.load_products()
+
+    for product in products['main_list']:
+        if product['id'] == id:
+            return product['selling_price']
+    return False 
+
+
+def get_cart_total(cart):
+    total = 0
+    for id,quan in cart:
+        price = get_product_price(id) * quan
+        total+=price
+    return total 
+
+
+def checkout(customer):
+    orders = models.DB.load_orders()
+    cart = customer.cart
+    total = get_cart_total(cart)
+    order_id = f"{customer.id}_{len(orders)}"
+    d = {'products':cart,'total':total,'status':'pending','driver_id':None}
+    orders[order_id] = d
+    models.DB.put_orders(orders)
+
+
+
+cust = models.User(101,'cust','cust@gmail.com',1111,'lahore')
+
+cust.add_item_to_cart(1,4)
+checkout(cust)
 
