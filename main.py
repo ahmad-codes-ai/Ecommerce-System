@@ -199,10 +199,18 @@ class App():
             print("Your cart is empty nothing to remove")
 
 
+    def handle_show_order_status(self):
+        services.show_all_orders(self.current_user)
+
+        user = input("Enter id of any order to see details or enter (q) for exit: ")
+
+        if user == 'q':
+            return 
+        else:
+            print(services.show_order_details(user))
+
 
 app = App()
-
-
 app.run()
 
 

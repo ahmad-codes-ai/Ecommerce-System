@@ -201,9 +201,31 @@ def get_product_stock(id):
         return False
 
 
-    
-cust = models.User(101,'cust','cust@gmail.com',1111,'lahore')
+def show_all_orders(customer):
+    id = customer.id
 
-cust.add_item_to_cart(1,4)
-checkout(cust)
+    orders = models.DB.load_orders()
+
+    for order,details in orders.items():
+        cust = order.split('_')
+        if int(cust[0]) == id:
+            print(f"{order} - {orders[order]['total']} - {orders[order]['status']}")
+
+
+
+def show_order_details(id):
+    orders = models.DB.load_orders()
+
+    for order in orders:
+        if order == id:
+            return orders[order]
+    return False
+
+
+
+
+
+
+
+
 

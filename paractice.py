@@ -11,17 +11,15 @@
 # print(u.cart)
 
 
-order_id = 1111
-def x(y):
-    if y > 2:
-        return order_id
-    else:
-        return False
-
-result = x(1)
 
 
-if result:
-    print(result)
+id = 1
+
+order_id = '1_0'
+
+split = order_id.split('_')
+
+if int(split[0]) == id:
+    print("Yes")
 else:
-    print("Not result")
+    print("No")
