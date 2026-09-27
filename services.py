@@ -222,7 +222,19 @@ def show_order_details(id):
     return False
 
 
+def get_products_with_low_quantity():
+    products = models.DB.load_products()
+    low_stock = []
 
+    for product in products['main_list']:
+        if product['quantity'] < 5:
+            low_stock.append(product['id'])
+
+    return low_stock
+
+
+
+ 
 
 
 

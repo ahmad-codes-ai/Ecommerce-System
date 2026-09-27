@@ -1,11 +1,18 @@
 {
     "main_list": [
         {
-            "name": "mobile",
+            "name": "mobile ",
             "cost_price": 100,
-            "selling_price": 120,
-            "quantity": 2,
-            "id": "1"
+            "selling_price": 115,
+            "quantity": 6,
+            "id": 1
+        },
+        {
+            "name": "laptop",
+            "cost_price": 400,
+            "selling_price": 550,
+            "quantity": 3,
+            "id": 2
         }
     ]
 }

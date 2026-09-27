@@ -31,9 +31,9 @@ class App():
             print("2: Start Trip")
             print("3: Quit")
 
-        elif isinstance(self.current_user,models.Admin):
+        elif self.current_user == 'admin':
             print(f"-------------- Welcome to Admin Dashboard ---------------")
-            print(f"Your current Balance is: {self.current_user.balance}")
+            print(f"Your current Balance is: {services.get_admin_balance()}$")
             print("1: See all products")
             print("2: Add product")
             print("3: Restock Product")
@@ -85,7 +85,7 @@ class App():
             elif choice == 3:
                 self.handle_exit()
 
-        elif isinstance(self.current_user,models.Admin):
+        elif self.current_user == 'admin':
             if choice == 1:
                 self.handle_show_all_products()
             elif choice == 2:
@@ -93,7 +93,7 @@ class App():
             elif choice == 3:
                 self.handle_restock_product()
             elif choice == 4:
-                self.handle_low_quantity_products()
+                self.handle_low_stock_products()
             elif choice == 5:
                 self.handle_analytics_dashboard()
             elif choice == 6:
@@ -210,6 +210,51 @@ class App():
             print(services.show_order_details(user))
 
 
+    def handle_show_all_products(self):
+        services.show_products()
+
+
+    def handle_add_product(self):
+        name = input("Enter name of the product: ")
+        cp = int(input("Enter cost price of the product: "))
+        sp = int(input("Enter selling price of the product: "))
+        quan = int(input("Enter quantity: "))
+
+        result = services.add_product(name,cp,sp,quan)
+
+        if result:
+            print("Product created successfully")
+        else:
+            print(f"Your balance {services.get_admin_balance()} is not enough to create this product")
+
+
+    def handle_restock_product(self):
+        id = int(input("Enter the id of the product: "))
+        quan = int(input("Enter quantity to add: "))
+
+        result = services.restock_product(id,quan)
+
+        if result is True:
+            print("The product stock has increased")
+        elif result is False:
+            print(f"Your balance {services.get_admin_balance()} is not enough to restock the quantity given")
+        else:
+            print("No product found with this id")
+
+
+    def handle_low_stock_products(self):
+        result = services.get_products_with_low_quantity()
+
+        print("Product with these id's has stock < 5")
+        print(result)
+
+
+    def handle_analytics_dashboard(self):
+        pass
+    
+    
+
+
 app = App()
 app.run()
 
@@ -232,5 +277,7 @@ app.run()
 
 
 
+# Testing 3 results (Admin):
 
+# Products ids are not 
 

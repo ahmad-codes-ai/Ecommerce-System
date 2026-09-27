@@ -79,7 +79,7 @@ class Product():
     def get_id(self):
         data = DB.load_products()
         try:
-            l = max(data["main_list"])
+            l = len(data["main_list"])
             return l+1
         except:
             return 1

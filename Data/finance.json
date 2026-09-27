@@ -8,9 +8,41 @@
         {
             "task": "sold_prod",
             "amount": 240
+        },
+        {
+            "task": "restock_prod",
+            "amount": -400
+        },
+        {
+            "task": "add_prod",
+            "amount": -1000
+        },
+        {
+            "task": "add_prod",
+            "amount": -600
+        },
+        {
+            "task": "add_prod",
+            "amount": -140
+        },
+        {
+            "task": "add_prod",
+            "amount": -40
+        },
+        {
+            "task": "add_prod",
+            "amount": -500
+        },
+        {
+            "task": "add_prod",
+            "amount": -1200
+        },
+        {
+            "task": "restock_prod",
+            "amount": -100
         }
     ],
-    "total_spent": 0,
+    "total_spent": 3980,
     "total_revenu": 0,
     "total_profit": 60
 }
