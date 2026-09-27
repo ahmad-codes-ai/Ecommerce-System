@@ -123,7 +123,7 @@ def get_total_logs():
     finance = models.DB.load_finance()
     return finance['logs']
 
-def get_product_price(id):
+def get_product_sale_price(id):
     products = models.DB.load_products()
 
     for product in products['main_list']:
@@ -132,25 +132,54 @@ def get_product_price(id):
     return False 
 
 
+def get_product_cost_price(id):
+    products = models.DB.load_products()
+
+    for product in products['main_list']:
+        if product['id'] == id:
+            return product['cost_price']
+    return False 
+
+ 
 def get_cart_total(cart):
     total = 0
     for id,quan in cart:
-        price = get_product_price(id) * quan
+        price = get_product_sale_price(id) * quan
         total+=price
     return total 
 
 
+def get_cart_cost(cart):
+    total = 0
+    for id,quan in cart:
+        price = get_product_cost_price(id) * quan
+        total+=price
+    return total
+
+
+
 def checkout(customer):
     if len(customer.cart) > 0:
+
+        # Order Related Logic
         orders = models.DB.load_orders()
         cart = customer.cart
-        total = get_cart_total(cart)
+        cart_total = get_cart_total(cart)
+        cart_cost = get_cart_cost(cart)
         order_id = f"{customer.id}_{len(orders)}"
-        d = {'products':cart,'total':total,'status':'pending','driver_id':None}
+        d = {'products':cart,'total':cart_total,'status':'pending','driver_id':None}
         orders[order_id] = d
         customer.clear_cart()
         models.DB.put_orders(orders)
-        return order_id
+
+        # Selling and updating product and finance
+
+        for id,quan in cart:
+            result = sell_prod(id,quan)
+
+        if result:
+            return order_id
+        
     return False
 
 
@@ -170,6 +199,7 @@ def get_product_stock(id):
         if product['id'] == id:
             return product['quantity']
         return False
+
 
     
 cust = models.User(101,'cust','cust@gmail.com',1111,'lahore')

@@ -50,7 +50,7 @@ class User():
 
     def remove_item_from_cart(self,id):
         idx = 0
-        self.cart = [item for item in self.cart if item['id']!=id]
+        self.cart = [item for item in self.cart if item[0]!=id]
 
 
     def clear_cart(self):

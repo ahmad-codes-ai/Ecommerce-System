@@ -20,8 +20,10 @@ class App():
             print("1: Browse Products")
             print("2: Buy by id")
             print("3: See order status")
-            print("4: Checkout")
-            print("5: Quit")
+            print("4: See cart")
+            print("5: Remove item from cart")
+            print("6: Checkout")
+            print("7: Quit")
 
         elif isinstance(self.current_user,models.Driver):
             print(f"Hello {self.current_user.name} Welcome to Driver dashboard")
@@ -66,8 +68,12 @@ class App():
             elif choice == 3:
                 self.handle_show_order_status()
             elif choice == 4:
-                self.handle_checkout()
+                self.handle_show_cart()
             elif choice == 5:
+                self.handle_remove_item_from_cart()
+            elif choice == 6:
+                self.handle_checkout()
+            elif choice == 7:
                 self.handle_exit()
 
 
@@ -175,6 +181,23 @@ class App():
             print("Your cart is empty plz add an item to cart before checkout")
 
 
+    def handle_show_cart(self):
+        if len(self.current_user.cart) > 0:
+            print(f"Your cart: {self.current_user.cart}")
+        else:
+            print("Your cart is empty []")
+
+
+    def handle_remove_item_from_cart(self):
+        if len(self.current_user.cart) > 0:
+            print("-------------- Your Cart ----------------")
+            print(self.current_user.cart)
+
+            id = input("Enter the id of which product you wanna remove: ")
+            self.current_user.remove_item_from_cart(id)
+        else:
+            print("Your cart is empty nothing to remove")
+
 
 
 app = App()
@@ -191,10 +214,13 @@ app.run()
 # Add see cart and remove item from cart in handlers
 
 
+# Testing 2 results:
 
-
-
-
+# All issues of test 1 has been resolved
+# carts.json has no usecase
+# the output need to be formatted proper spacing from the print commands 
+# Order status need to implemented in handlers
+# one more option to see current orders
 
 
 

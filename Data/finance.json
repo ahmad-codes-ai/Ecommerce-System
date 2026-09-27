@@ -1,9 +1,16 @@
 {
     "orders": [],
     "logs": [
-        
+        {
+            "task": "sold_prod",
+            "amount": 120
+        },
+        {
+            "task": "sold_prod",
+            "amount": 240
+        }
     ],
     "total_spent": 0,
     "total_revenu": 0,
-    "total_profit": 0
+    "total_profit": 60
 }
