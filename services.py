@@ -48,6 +48,7 @@ def sell_prod(id,quan):
                 models.DB.put_products(products)
 
                 update_admin_balance(total)
+                add_revenu_finance(total)
                 add_log_finance('sold_prod',total)
                 add_profit_finance(total - cost)
                 return True
@@ -97,6 +98,10 @@ def add_profit_finance(amount):
     finance['total_profit']+=amount
     models.DB.put_finance(finance)
 
+def add_revenu_finance(amount):
+    finance = models.DB.load_finance()
+    finance['total_revenu']+=amount
+    models.DB.put_finance(finance)
 
 def admin_can_afford(amount):
     balance = get_admin_balance()
@@ -105,23 +110,6 @@ def admin_can_afford(amount):
         return True
     return False
 
-
-# All geteers from finance.json
-def get_total_profit():
-    finance = models.DB.load_finance()
-    return finance['total_profit']
-
-def get_total_revenu():
-    finance = models.DB.load_finance()
-    return finance['total_revenu']
-
-def get_total_spending():
-    finance = models.DB.load_finance()
-    return finance['total_spent']
-
-def get_total_logs():
-    finance = models.DB.load_finance()
-    return finance['logs']
 
 def get_product_sale_price(id):
     products = models.DB.load_products()
@@ -222,19 +210,12 @@ def show_order_details(id):
     return False
 
 
-def get_products_with_low_quantity():
-    products = models.DB.load_products()
-    low_stock = []
-
-    for product in products['main_list']:
-        if product['quantity'] < 5:
-            low_stock.append(product['id'])
-
-    return low_stock
+    
 
 
 
  
+
 
 
 

@@ -1,6 +1,8 @@
 import models
 import services
 import auth
+import analytics
+
 
 
 class App():
@@ -243,7 +245,7 @@ class App():
 
 
     def handle_low_stock_products(self):
-        result = services.get_products_with_low_quantity()
+        result = analytics.get_low_stock_products()
 
         print("Product with these id's has stock < 5")
         print(result)
