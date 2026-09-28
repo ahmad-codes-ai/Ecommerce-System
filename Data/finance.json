@@ -15,13 +15,41 @@
         {
             "task": "sold_prod",
             "amount": 550
+        },
+        {
+            "task": "sold_prod",
+            "amount": 345
+        },
+        {
+            "task": "sold_prod",
+            "amount": 550
+        },
+        {
+            "task": "sold_prod",
+            "amount": 230
+        },
+        {
+            "task": "sold_prod",
+            "amount": 550
+        },
+        {
+            "task": "sold_prod",
+            "amount": 550
+        },
+        {
+            "task": "sold_prod",
+            "amount": 550
+        },
+        {
+            "task": "sold_prod",
+            "amount": 550
         }
     ],
     "total_spent": 0,
-    "total_revenu": 1675,
-    "total_profit": 375,
+    "total_revenu": 5000,
+    "total_profit": 1200,
     "sold_products_count": {
-        "1": 5,
-        "2": 2
+        "1": 10,
+        "2": 7
     }
 }

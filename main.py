@@ -252,7 +252,41 @@ class App():
 
 
     def handle_analytics_dashboard(self):
-        pass
+        print("1: Show financial Analytics")
+        print("2: Show Orders Analytics")
+        print("3: Show Products Analytics")
+        print("4: Show all transaction logs")
+
+        user = int(input("Enter your choice: "))
+
+        if user == 1:
+            print(f"Total Spent: \t \t {analytics.show_total_spent()} ")
+            print(f"Total Revenu: \t \t {analytics.show_total_revenu()}")
+            print(f"Total Profit: \t \t {analytics.show_total_profits()}")
+
+        elif user == 2:
+            print(f"Total Orders: \t \t {analytics.get_total_orders()}")
+            print(f"Pending Orders: \t \t {analytics.get_pending_orders()}")
+            print(f"Assigned Orders: \t \t {analytics.get_assigned_orders()}")
+            print(f"Delivered Orders: \t \t {analytics.get_delivered_orders()}")
+
+        elif user == 3:
+            print(f"Total Number of Products: \t \t {analytics.total_number_of_products()}")
+            print(f"Total Inventory value: \t \t {analytics.get_total_inventory_value()}")
+            print(f"Low stock Products < 5: \t \t {analytics.get_low_stock_products()}")
+            print(f"Out of Stock Products: \t \t {analytics.get_out_of_stock_products()}")
+            print(f"Top sold product: \t \t {analytics.most_sold_product()}")
+            print(f"Top 3 products: \t \t {analytics.get_top_sold_products(3)}")
+
+        elif user == 4:
+            print("All Tranactions Logs: ")
+            print(analytics.show_all_logs())
+
+        else:
+            print("Invalid Input")
+
+
+            
     
     
 

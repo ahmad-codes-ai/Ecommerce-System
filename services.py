@@ -164,7 +164,7 @@ def checkout(customer):
         # Selling and updating product and finance
 
         for id,quan in cart:
-            result = sell_prod(int(id),quan)
+            result = sell_prod(id,quan)
 
         if result:
             return order_id

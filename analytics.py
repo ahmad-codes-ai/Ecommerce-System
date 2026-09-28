@@ -56,7 +56,7 @@ products = models.DB.load_products()
 
 
 def total_number_of_products():
-    return len(products)
+    return len(products['main_list'])
 
 
 def get_low_stock_products():
@@ -88,7 +88,6 @@ def get_total_inventory_value():
     return total
 
 
-# Need Testing
 def get_top_sold_products(n):
     sorted_products = sorted(finance['sold_products_count'], key=finance['sold_products_count'].get,reverse=True)
 
@@ -97,6 +96,10 @@ def get_top_sold_products(n):
     if len(sorted_products) >= n:
         for i in range(n):
             result.append(sorted_products[i])
+    else:
+        for i in sorted_products:
+            result.append(i)
+
     return result
 
 
