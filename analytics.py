@@ -88,3 +88,20 @@ def get_total_inventory_value():
     return total
 
 
+# Need Testing
+def get_top_sold_products(n):
+    sorted_products = sorted(finance['sold_products_count'], key=finance['sold_products_count'].get,reverse=True)
+
+    result = []
+
+    if len(sorted_products) >= n:
+        for i in range(n):
+            result.append(sorted_products[i])
+    return result
+
+
+def most_sold_product():
+    p = get_top_sold_products(1)
+    return p
+
+

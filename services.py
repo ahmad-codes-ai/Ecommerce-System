@@ -48,6 +48,7 @@ def sell_prod(id,quan):
                 models.DB.put_products(products)
 
                 update_admin_balance(total)
+                put_sold_product(id,quan)
                 add_revenu_finance(total)
                 add_log_finance('sold_prod',total)
                 add_profit_finance(total - cost)
@@ -163,7 +164,7 @@ def checkout(customer):
         # Selling and updating product and finance
 
         for id,quan in cart:
-            result = sell_prod(id,quan)
+            result = sell_prod(int(id),quan)
 
         if result:
             return order_id
@@ -210,15 +211,23 @@ def show_order_details(id):
     return False
 
 
-    
+def put_sold_product(id,quan):
+    finance = models.DB.load_finance()
+    id = str(id)
+    if id in finance['sold_products_count']:
+        finance['sold_products_count'][id]+=quan
+    else:
+        finance['sold_products_count'][id] = quan
+    models.DB.put_finance(finance)
 
 
 
- 
 
+print(sell_prod(1,3))
+print(sell_prod(2,1))
+print(sell_prod(1,2))
+print(sell_prod(2,1))
 
-
-
-
-
-
+# mm = 1
+# finance = models.DB.load_finance()
+# print(str(mm) in finance['sold_products_count'])
