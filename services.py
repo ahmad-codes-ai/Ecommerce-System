@@ -222,14 +222,18 @@ def put_sold_product(id,quan):
 
 
 
+# Driver Related Functions 
+
 def get_orders_by_city(location):
     orders = models.DB.load_orders()
     result = []
 
     for order in orders:
-        if order['city'] == location:
+        if orders[order]['city'].lower().strip() == location.lower().strip():
             result.append(order)
     return result
+
+
 
 def show_order(id):
     orders = models.DB.load_orders()
@@ -237,10 +241,9 @@ def show_order(id):
     for order in orders:
         if order == id:
             print(orders[order])
+            return True
+    return False
 
 
 
 
-# mm = 1
-# finance = models.DB.load_finance()
-# print(str(mm) in finance['sold_products_count'])

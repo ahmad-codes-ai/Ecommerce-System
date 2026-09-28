@@ -121,11 +121,19 @@ class App():
             print("This email is already associated with an account. Please login")
 
     def handle_login(self):
+        role = input("If your are a user enter (u) and for driver (d): ")
+
+        if role == 'u':
+            actor = 'user'
+        elif role == 'd':
+            actor = 'driver'
+        else:
+            actor = None
+    
         email = input("Enter your email: ")
         password = input("Enter your password: ")
-
-        result = auth.login(email,password)
-
+      
+        result = auth.login(email,password,actor)
         if result is not False:
             self.current_user = result
             print("Login Successfull")
@@ -286,8 +294,18 @@ class App():
             print("Invalid Input")
 
 
-            
-    
+    def handle_show_orders_driver(self):
+        city_orders = services.get_orders_by_city(self.current_user.location)
+
+        if len(city_orders) > 0:
+            i = 1
+            for order in city_orders:
+                print(i,end=' ')
+                {services.show_order(order)}
+                i+=1
+        else:
+            print("No Order from your city right now")
+
     
 
 
