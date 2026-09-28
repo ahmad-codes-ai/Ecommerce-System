@@ -178,7 +178,7 @@ def product_exist(id):
     for product in products['main_list']:
         if product['id'] == id:
             return True
-        return False 
+    return False  #This line cost me 30 minutes of stress
 
 
 def get_product_stock(id):

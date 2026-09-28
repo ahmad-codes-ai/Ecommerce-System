@@ -43,13 +43,29 @@
         {
             "task": "sold_prod",
             "amount": 550
+        },
+        {
+            "task": "add_prod",
+            "amount": -250
+        },
+        {
+            "task": "add_prod",
+            "amount": -200
+        },
+        {
+            "task": "sold_prod",
+            "amount": 245
+        },
+        {
+            "task": "sold_prod",
+            "amount": 35
         }
     ],
-    "total_spent": 0,
-    "total_revenu": 5000,
-    "total_profit": 1200,
+    "total_spent": 450,
+    "total_revenu": 5280,
+    "total_profit": 1320,
     "sold_products_count": {
         "1": 10,
-        "2": 7
+        "2": 15
     }
 }

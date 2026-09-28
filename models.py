@@ -80,9 +80,12 @@ class Product():
         data = DB.load_products()
         try:
             l = len(data["main_list"])
-            return l+1
+            p = l+1
+            return str(p)
         except:
-            return 1
+            p = 1
+            return str(p)
+        
     def save_product(self):
 
         d = {'name': self.name,

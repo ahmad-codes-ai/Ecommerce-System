@@ -1,18 +1,18 @@
 {
     "main_list": [
         {
-            "name": "mobile ",
-            "cost_price": 100,
-            "selling_price": 115,
-            "quantity": 6,
-            "id": 1
+            "name": "phone",
+            "cost_price": 50,
+            "selling_price": 60,
+            "quantity": 5,
+            "id": "1"
         },
         {
-            "name": "laptop",
-            "cost_price": 400,
-            "selling_price": 550,
-            "quantity": 5,
-            "id": 2
+            "name": "charger",
+            "cost_price": 20,
+            "selling_price": 35,
+            "quantity": 2,
+            "id": "2"
         }
     ]
 }
