@@ -107,4 +107,3 @@ def most_sold_product():
     p = get_top_sold_products(1)
     return p
 
-

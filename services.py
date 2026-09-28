@@ -156,7 +156,7 @@ def checkout(customer):
         cart_total = get_cart_total(cart)
         cart_cost = get_cart_cost(cart)
         order_id = f"{customer.id}_{len(orders)}"
-        d = {'products':cart,'total':cart_total,'status':'pending','driver_id':None}
+        d = {'products':cart,'total':cart_total,'status':'pending','driver_id':None,'city':customer.location}
         orders[order_id] = d
         customer.clear_cart()
         models.DB.put_orders(orders)
@@ -222,11 +222,24 @@ def put_sold_product(id,quan):
 
 
 
+def get_orders_by_city(location):
+    orders = models.DB.load_orders()
+    result = []
 
-print(sell_prod(1,3))
-print(sell_prod(2,1))
-print(sell_prod(1,2))
-print(sell_prod(2,1))
+    for order in orders:
+        if order['city'] == location:
+            result.append(order)
+    return result
+
+def show_order(id):
+    orders = models.DB.load_orders()
+
+    for order in orders:
+        if order == id:
+            print(orders[order])
+
+
+
 
 # mm = 1
 # finance = models.DB.load_finance()

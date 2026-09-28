@@ -1,24 +1,3 @@
 {
-    "1_0": {
-        "products": [
-            [
-                "1",
-                1
-            ]
-        ],
-        "total": 120,
-        "status": "pending",
-        "driver_id": null
-    },
-    "1_1": {
-        "products": [
-            [
-                "1",
-                2
-            ]
-        ],
-        "total": 240,
-        "status": "pending",
-        "driver_id": null
-    }
+    
 }
