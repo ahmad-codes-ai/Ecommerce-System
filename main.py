@@ -329,7 +329,7 @@ class App():
         else:
             print("No Order from your city right now")
      
-    # Function is working and updating order driver and status
+    
     
 
     def handle_show_active_orders(self):
@@ -371,37 +371,10 @@ class App():
     
 
 
-    # Now just need to implement driver balance logic. Need to be saved in file 
-    # The balamce of driver is still increasing if he enter any random order id need to check this 
 
 
 
 app = App()
 app.run()
-
-
-
-# Testing 1 results:
-
-# Stock is not reduced in products.json when adding to cart 
-# Finance is not updated 
-# Add see cart and remove item from cart in handlers
-
-
-# Testing 2 results:
-
-# All issues of test 1 has been resolved
-# carts.json has no usecase
-# the output need to be formatted proper spacing from the print commands 
-# Order status need to implemented in handlers
-# one more option to see current orders
-
-
-
-# Testing 3 results (Admin):
-
-# Products ids are not 
-
-
 
 

@@ -47,7 +47,7 @@ def sell_prod(id,quan):
                 cost = product['cost_price'] * quan
                 models.DB.put_products(products)
 
-                update_admin_balance(get_admin_balance() + total)    # Fix 1 in testing 
+                update_admin_balance(get_admin_balance() + total)    
                 put_sold_product(id,quan)
                 add_revenu_finance(total)
                 add_log_finance('sold_prod',total)
@@ -178,7 +178,7 @@ def product_exist(id):
     for product in products['main_list']:
         if product['id'] == id:
             return True
-    return False  #This line cost me 30 minutes of stress
+    return False  
 
 
 def get_product_stock(id):
@@ -265,7 +265,6 @@ def get_order_status(id):
         return False
 
 
-# A function where we give order_id and driver_id it go if status pedning and driver none it fill it up
 
 def assign_driver_order(order_id,driver_id):
     orders = models.DB.load_orders()
@@ -306,7 +305,7 @@ def complete_delivery(order_id):
 
     for order in orders:
         if order == order_id:
-            orders[order]['status'] = 'delivered'  # This is not updating the status idk why
+            orders[order]['status'] = 'delivered'  
             update_admin_balance(get_admin_balance() - driver_earning)
             add_log_finance('delivery_cost',-driver_earning)
             add_total_spent_finance(driver_earning)

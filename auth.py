@@ -77,8 +77,3 @@ def login(email,pas,actor='user'):
         elif actor is None:
             return False
 
-
-
-
-
-# We need to ask either they are driver or a user just like in signup and check that file current login logic is not working
