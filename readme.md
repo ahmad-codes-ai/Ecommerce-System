@@ -10,7 +10,7 @@ The system simulates a small online store where three types of users interact: A
 
 ### Admin
 - Logs in with a hardcoded username and password
-- Has a starting balance of Rs. 100,000
+- Has a starting balance of 100,000$
 - Can add new products (checks if balance is enough)
 - Can restock existing products (checks if balance is enough)
 - Sees all products in inventory
