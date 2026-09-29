@@ -30,8 +30,11 @@ class App():
         elif isinstance(self.current_user,models.Driver):
             print(f"Hello {self.current_user.name} Welcome to Driver dashboard")
             print("1: See and pick orders")
-            print("2: Start Trip")
-            print("3: Quit")
+            print("2: Show completed orders")
+            print("3: Show active orders")
+            print("4: Show earnings")
+            print("5: Deliver Order")
+            print("6: Quit")
 
         elif self.current_user == 'admin':
             print(f"-------------- Welcome to Admin Dashboard ---------------")
@@ -83,8 +86,14 @@ class App():
             if choice == 1:
                 self.handle_show_orders_driver()
             elif choice == 2:
-                self.handle_start_rider_trip()
+                self.show_completed_orders()
             elif choice == 3:
+                self.handle_show_active_orders()
+            elif choice == 4:
+                self.show_earnings()
+            elif choice == 5:
+                self.handle_deliver_order()
+            elif choice == 6:
                 self.handle_exit()
 
         elif self.current_user == 'admin':
@@ -293,20 +302,53 @@ class App():
         else:
             print("Invalid Input")
 
+# Driver Handlers
 
     def handle_show_orders_driver(self):
-        city_orders = services.get_orders_by_city(self.current_user.location)
+        city_orders = services.get_orders_by_city(self.current_user.location)  # All orders pending,assigned,delivered
 
         if len(city_orders) > 0:
             i = 1
             for order in city_orders:
-                print(i,end=' ')
-                {services.show_order(order)}
-                i+=1
+
+                if services.get_order_status(order) == 'pending':
+                    print(order,end=' ')
+                    services.show_order(order)
+                    i+=1
+                    print()
+
+            user = input("Enter the ids of order you wanna pick in order id1,id2,id3: ")
+            requested_ids = user.split(',')
+
+            for id in requested_ids:
+                if services.get_driver_active_orders_count(self.current_user.id) <= 20:
+                    services.assign_driver_order(id,self.current_user.id)
+                else:
+                    print("Your 20 orders limit reached some orders are not assigned to you")
+            
         else:
             print("No Order from your city right now")
-
+     
+    # Function is working and updating order driver and status
     
+
+    def handle_show_active_orders(self):
+        result = services.get_driver_active_orders_details(self.current_user.id)
+
+        for id,total in result:
+            print((id,total))
+
+    def handle_deliver_order(self):
+        self.handle_show_active_orders()
+        active_orders = services.get_driver_active_orders_details()
+
+        user = input("Enter the id of which order you have delivered or 'a' for all: ")
+
+        if user == 'a':
+            for id,total in active_orders:
+                pass
+
+
 
 
 app = App()
@@ -334,4 +376,7 @@ app.run()
 # Testing 3 results (Admin):
 
 # Products ids are not 
+
+
+
 

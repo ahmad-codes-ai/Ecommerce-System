@@ -72,3 +72,5 @@ ecommerce_project/
     ├── orders.json
     ├── carts.json
     └── financials.json
+
+

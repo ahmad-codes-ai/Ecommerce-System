@@ -245,5 +245,58 @@ def show_order(id):
     return False
 
 
+def order_exist(id):
+    orders = models.DB.load_orders()
+
+    for order in orders:
+        if order == id:
+            return True
+    return False
+
+
+def get_order_status(id):
+    if order_exist(id):
+        orders = models.DB.load_orders()
+
+        for order in orders:
+            if order == id:
+                return orders[order]['status']
+    else:
+        return False
+
+
+# A function where we give order_id and driver_id it go if status pedning and driver none it fill it up
+
+def assign_driver_order(order_id,driver_id):
+    orders = models.DB.load_orders()
+
+    for order in orders:
+        if order == order_id:
+            if orders[order]['status'] == 'pending':
+                orders[order]['status'] = 'assigned'
+                orders[order]['driver_id'] = driver_id
+    
+    models.DB.put_orders(orders)
+
+
+def get_driver_active_orders_count(id):
+    orders = models.DB.load_orders()
+    count = 0
+
+    for order in orders:
+        if order == id:
+            count+=1
+    return count
+
+
+def get_driver_active_orders_details(id):
+    orders = models.DB.load_orders()
+    result = []
+
+    for order in orders:
+        if orders[order]['driver_id'] == id:
+            result.append([order,[orders[order]['total']]])
+
+    return result
 
 

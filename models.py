@@ -1,28 +1,6 @@
 import json
 
 
-class Map():
-    cities = ['lahore','islamabad','karachi']
-    distances = {
-        # Lahore connections
-        'lahore-islamabad': 377,
-        'islamabad-lahore': 377,
-        'lahore-karachi': 1203,
-        'karachi-lahore': 1203,
-        'lahore-multan': 405,
-        'multan-lahore': 405,
-        
-        # Islamabad connections
-        'islamabad-karachi': 1405,
-        'karachi-islamabad': 1405,
-        'islamabad-multan': 544,
-        'multan-islamabad': 544,
-        
-        # Karachi & Multan connection
-        'karachi-multan': 877,
-        'multan-karachi': 877
-    }
-
 class User():
     def __init__(self,id,name,email,pas,loc):
         self.id = id
@@ -42,6 +20,7 @@ class User():
                     self.cart.append(detail)
                     return True
                 return False
+            
 
     def view_cart(self):
         carts = DB.load_carts()
