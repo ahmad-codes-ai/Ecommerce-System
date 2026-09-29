@@ -2,11 +2,11 @@
     "main_list": [
         {
             "id": 1,
-            "name": "driver",
-            "email": "driver@gmail.com",
+            "name": "Bob",
+            "email": "bob@gmail.com",
             "password": "1122",
-            "location": "karachi",
-            "earning": 56
+            "location": "lahore",
+            "earning": 7
         }
     ]
 }

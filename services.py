@@ -47,7 +47,7 @@ def sell_prod(id,quan):
                 cost = product['cost_price'] * quan
                 models.DB.put_products(products)
 
-                update_admin_balance(total)
+                update_admin_balance(get_admin_balance() + total)    # Fix 1 in testing 
                 put_sold_product(id,quan)
                 add_revenu_finance(total)
                 add_log_finance('sold_prod',total)

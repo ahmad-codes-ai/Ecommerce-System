@@ -1,119 +1,31 @@
 {
     "logs": [
         {
-            "task": "sold_prod",
-            "amount": 345
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
-        },
-        {
-            "task": "sold_prod",
-            "amount": 230
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
-        },
-        {
-            "task": "sold_prod",
-            "amount": 345
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
-        },
-        {
-            "task": "sold_prod",
-            "amount": 230
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
-        },
-        {
-            "task": "sold_prod",
-            "amount": 550
+            "task": "add_prod",
+            "amount": -10000
         },
         {
             "task": "add_prod",
-            "amount": -250
-        },
-        {
-            "task": "add_prod",
-            "amount": -200
+            "amount": -15000
         },
         {
             "task": "sold_prod",
-            "amount": 245
+            "amount": 4000
         },
         {
             "task": "sold_prod",
-            "amount": 35
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
-        },
-        {
-            "task": "delivery_cost",
-            "amount": -7
+            "amount": 1500
         },
         {
             "task": "delivery_cost",
             "amount": -7
         }
     ],
-    "total_spent": 534,
-    "total_revenu": 5280,
-    "total_profit": 1320,
+    "total_spent": 25007,
+    "total_revenu": 5500,
+    "total_profit": 1500,
     "sold_products_count": {
-        "1": 10,
-        "2": 15
+        "2": 1,
+        "1": 1
     }
 }

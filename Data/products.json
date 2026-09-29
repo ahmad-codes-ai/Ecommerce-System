@@ -1,17 +1,17 @@
 {
     "main_list": [
         {
-            "name": "phone",
-            "cost_price": 50,
-            "selling_price": 60,
-            "quantity": 5,
+            "name": "Phone",
+            "cost_price": 1000,
+            "selling_price": 1500,
+            "quantity": 9,
             "id": "1"
         },
         {
-            "name": "charger",
-            "cost_price": 20,
-            "selling_price": 35,
-            "quantity": 2,
+            "name": "Laptop",
+            "cost_price": 3000,
+            "selling_price": 4000,
+            "quantity": 4,
             "id": "2"
         }
     ]

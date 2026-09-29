@@ -3,136 +3,16 @@
         "products": [
             [
                 "2",
-                7
+                1
             ],
-            [
-                "2",
-                1
-            ]
-        ],
-        "total": 280,
-        "status": "delivered",
-        "driver_id": 1,
-        "city": "karachi"
-    },
-    "1_1": {
-        "products": [
-            [
-                "5",
-                2
-            ]
-        ],
-        "total": 150,
-        "status": "delivered",
-        "driver_id": 1,
-        "city": "karachi"
-    },
-    "1_2": {
-        "products": [
-            [
-                "1",
-                3
-            ],
-            [
-                "4",
-                2
-            ]
-        ],
-        "total": 540,
-        "status": "assigned",
-        "driver_id": "drv_992",
-        "city": "karachi"
-    },
-    "1_3": {
-        "products": [
-            [
-                "3",
-                1
-            ]
-        ],
-        "total": 90,
-        "status": "completed",
-        "driver_id": "drv_104",
-        "city": "karachi"
-    },
-    "2_0": {
-        "products": [
-            [
-                "7",
-                4
-            ]
-        ],
-        "total": 400,
-        "status": "pending",
-        "driver_id": null,
-        "city": "lahore"
-    },
-    "2_1": {
-        "products": [
-            [
-                "2",
-                2
-            ],
-            [
-                "8",
-                1
-            ]
-        ],
-        "total": 310,
-        "status": "assigned",
-        "driver_id": "drv_412",
-        "city": "lahore"
-    },
-    "2_2": {
-        "products": [
-            [
-                "6",
-                5
-            ]
-        ],
-        "total": 750,
-        "status": "completed",
-        "driver_id": "drv_881",
-        "city": "lahore"
-    },
-    "3_0": {
-        "products": [
-            [
-                "9",
-                1
-            ]
-        ],
-        "total": 120,
-        "status": "pending",
-        "driver_id": null,
-        "city": "islamabad"
-    },
-    "3_1": {
-        "products": [
             [
                 "1",
                 1
-            ],
-            [
-                "5",
-                3
             ]
         ],
-        "total": 450,
-        "status": "assigned",
-        "driver_id": "drv_303",
-        "city": "islamabad"
-    },
-    "3_2": {
-        "products": [
-            [
-                "4",
-                4
-            ]
-        ],
-        "total": 640,
-        "status": "cancelled",
-        "driver_id": null,
-        "city": "islamabad"
+        "total": 5500,
+        "status": "delivered",
+        "driver_id": 1,
+        "city": "lahore"
     }
 }

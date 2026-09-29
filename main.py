@@ -90,7 +90,7 @@ class App():
             elif choice == 3:
                 self.handle_show_active_orders()
             elif choice == 4:
-                self.show_earnings()
+                self.handle_show_earnings()
             elif choice == 5:
                 self.handle_deliver_order()
             elif choice == 6:
@@ -352,8 +352,12 @@ class App():
             print(f"You have delivered all your orders. Your new balance is: {services.get_driver_earning(self.current_user.id)}")
 
         else:
-            services.complete_delivery(user)
-            print(f"The order is delivered. Your new balance is: {services.get_driver_earning(self.current_user.id)}")
+            for id,total in active_orders:
+                if id == user:
+                    services.complete_delivery(user)
+                    print(f"The order is delivered. Your new balance is: {services.get_driver_earning(self.current_user.id)}")
+                    return True
+            print("Invalid id entered")
 
 
     def show_completed_orders(self):
@@ -361,6 +365,9 @@ class App():
         for order in services.get_completed_orders_rider(self.current_user.id):
             print(order)
 
+
+    def handle_show_earnings(self):
+        print(f"{self.current_user.name} your total earnings so far are: {services.get_driver_earning(self.current_user.id)}$ ")
     
 
 
