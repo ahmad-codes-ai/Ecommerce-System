@@ -294,9 +294,52 @@ def get_driver_active_orders_details(id):
     result = []
 
     for order in orders:
-        if orders[order]['driver_id'] == id:
+        if orders[order]['driver_id'] == id and orders[order]['status'] == 'assigned':
             result.append([order,[orders[order]['total']]])
 
     return result
 
 
+def complete_delivery(order_id):
+    orders = models.DB.load_orders()
+    driver_earning = 7
+
+    for order in orders:
+        if order == order_id:
+            orders[order]['status'] = 'delivered'  # This is not updating the status idk why
+            update_admin_balance(get_admin_balance() - driver_earning)
+            add_log_finance('delivery_cost',-driver_earning)
+            add_total_spent_finance(driver_earning)
+            update_driver_earning(orders[order]['driver_id'],driver_earning)
+    models.DB.put_orders(orders)
+            
+
+def update_driver_earning(id,amount):
+    drivers = models.DB.load_drivers()
+    
+    for driver in drivers['main_list']:
+        if driver['id'] == id:
+            driver['earning']+=amount
+            models.DB.put_drivers(drivers)
+            return True
+    return False 
+
+
+def get_driver_earning(id):
+    drivers = models.DB.load_drivers()
+
+    for driver in drivers['main_list']:
+        if driver['id'] == id:
+            return driver['earning']
+    return False
+
+
+def get_completed_orders_rider(id):
+    orders = models.DB.load_orders()
+    result = []
+
+    for order in orders:
+        if orders[order]['driver_id'] == id:
+            result.append([order,orders[order]['total']])
+
+    return result

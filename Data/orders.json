@@ -11,8 +11,8 @@
             ]
         ],
         "total": 280,
-        "status": "assigned",
-        "driver_id": 3,
+        "status": "delivered",
+        "driver_id": 1,
         "city": "karachi"
     },
     "1_1": {
@@ -23,8 +23,8 @@
             ]
         ],
         "total": 150,
-        "status": "assigned",
-        "driver_id": 3,
+        "status": "delivered",
+        "driver_id": 1,
         "city": "karachi"
     },
     "1_2": {

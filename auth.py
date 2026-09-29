@@ -6,27 +6,41 @@ import models
 def sign_up(name,email,pas,loc,actor='user'):
 
     if actor == 'user':
-        file = 'Data/users.json'
-    else:
-        file = 'Data/drivers.json'
-        
-    with open(file,'r') as f:
-        data = json.load(f)
+        data = models.DB.load_users()
 
-    for user in data["main_list"]:
-        if user['email'] == email:
-            return False
-    try:
-        l = max(user['id'] for user in data['main_list'])
-        uid = l + 1
-    except ValueError:
-        uid = 1
-    d = {'id':uid,'name':name,'email':email,'password':pas,'location':loc}
-    data['main_list'].append(d)
+        for user in data['main_list']:
+            if user['email'] == email:
+                return False
 
-    with open(file,'w') as f:
-        json.dump(data,f,indent=4)
-    return True
+        try:
+            l = max(user['id'] for user in data['main_list'])
+            uid = l + 1
+        except ValueError:
+            uid = 1
+
+        d = {'id':uid,'name':name,'email':email,'password':pas,'location':loc}
+        data['main_list'].append(d)
+        models.DB.put_users(data)
+        return True
+
+    elif actor == 'driver':
+        data = models.DB.load_drivers()
+
+        for user in data['main_list']:
+            if user['email'] == email:
+                return False
+
+        try:
+            l = max(user['id'] for user in data['main_list'])
+            uid = l + 1
+        except ValueError:
+            uid = 1
+
+        d = {'id':uid,'name':name,'email':email,'password':pas,'location':loc,'earning':0}
+        data['main_list'].append(d)
+        models.DB.put_drivers(data)
+        return True
+
 
 def login(email,pas,actor='user'):
 

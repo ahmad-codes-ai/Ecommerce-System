@@ -2,24 +2,11 @@
     "main_list": [
         {
             "id": 1,
-            "name": "Ahmad",
-            "email": "ahmad1@gmail.com",
-            "password": "1122",
-            "location": "Lahore"
-        },
-        {
-            "id": 2,
-            "name": "Ahmad",
-            "email": "ahmad@gmail.com",
-            "password": "1122",
-            "location": "Lahore"
-        },
-        {
-            "id": 3,
             "name": "driver",
             "email": "driver@gmail.com",
-            "password": "1111",
-            "location": "karachi"
+            "password": "1122",
+            "location": "karachi",
+            "earning": 56
         }
     ]
 }

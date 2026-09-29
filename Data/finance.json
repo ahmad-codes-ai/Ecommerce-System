@@ -59,9 +59,57 @@
         {
             "task": "sold_prod",
             "amount": 35
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
+        },
+        {
+            "task": "delivery_cost",
+            "amount": -7
         }
     ],
-    "total_spent": 450,
+    "total_spent": 534,
     "total_revenu": 5280,
     "total_profit": 1320,
     "sold_products_count": {

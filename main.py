@@ -114,7 +114,7 @@ class App():
         role = input("For User type (u) for Driver type (d): ")
         if role == 'u':
             role = 'user'
-        elif role == 'r':
+        elif role == 'd':
             role = 'driver'
 
         name = input("Enter your name: ")
@@ -143,7 +143,7 @@ class App():
         password = input("Enter your password: ")
       
         result = auth.login(email,password,actor)
-        if result is not False:
+        if result is not False and result is not None:
             self.current_user = result
             print("Login Successfull")
         else:
@@ -338,16 +338,34 @@ class App():
         for id,total in result:
             print((id,total))
 
+
     def handle_deliver_order(self):
+        
         self.handle_show_active_orders()
-        active_orders = services.get_driver_active_orders_details()
+        active_orders = services.get_driver_active_orders_details(self.current_user.id)
 
         user = input("Enter the id of which order you have delivered or 'a' for all: ")
 
         if user == 'a':
             for id,total in active_orders:
-                pass
+                services.complete_delivery(id)
+            print(f"You have delivered all your orders. Your new balance is: {services.get_driver_earning(self.current_user.id)}")
 
+        else:
+            services.complete_delivery(user)
+            print(f"The order is delivered. Your new balance is: {services.get_driver_earning(self.current_user.id)}")
+
+
+    def show_completed_orders(self):
+        print("Your completed orders are: ")
+        for order in services.get_completed_orders_rider(self.current_user.id):
+            print(order)
+
+    
+
+
+    # Now just need to implement driver balance logic. Need to be saved in file 
+    # The balamce of driver is still increasing if he enter any random order id need to check this 
 
 
 
